@@ -1,1 +1,3 @@
 /cookbooks/
+/Berksfile.lock
+/nodes/
