@@ -20,6 +20,6 @@ end
 execute "start_supervisord" do
   user "root"
   cwd "/tmp"
-  command "/usr/bin/supervisord --pidfile /var/run/supervisord.pid"
+  command "/usr/bin/supervisord"
   creates "/var/run/supervisord.pid"
 end
