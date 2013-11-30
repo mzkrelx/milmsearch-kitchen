@@ -1,0 +1,8 @@
+{
+    "id" : "milmsearch",
+    "username" : "milmsearch",
+    "group" : "milmsearch",
+    "home" : "/usr/local/milmsearch",
+    "shell" : "/bin/bash",
+    "key" : "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuZj7GLCUlrDIOiYkv5JEj7p8zO4kqdPXdykanWEwZrQuDmRWgwrNy9mjGKSw92RwEOxNwI12D+SEqJI/WcbpYWLBdMfaiUxaWjkdl4eGVupCDKDGBUiiHVrrfb4mUR4UW862yAwx8+Ky+ENn9qftCQSppb34ABIjkoWYX6v4+in3h5XTouR69J3DHUQAIJjOeHH6GXON2klGCjI0EFSankbFbmsagOJeQvNQzcNsJl3FHGHX/WAWEKrOsxf6ORZrc+kr/MIHmiHsPEc+ImydGNDeWUP8ef1mcqFFjiYoAMnLUqF2dcy8AI1YDsW1g0vyzPMDiGWuczESqwLRjIjWPQ== jenkins@sheep.milmsearch.org"
+}
