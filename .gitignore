@@ -1,3 +1,4 @@
 /cookbooks/
 /Berksfile.lock
 /nodes/
+/data_bag_key
