@@ -1,5 +1,5 @@
-postgresql Cookbook
-===================
+milmsearch-postgresql Cookbook
+==============================
 TODO: Enter the cookbook description here.
 
 e.g.
@@ -11,14 +11,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - postgresql needs toaster to brown your bagel.
+- `toaster` - milmsearch-postgresql needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List you cookbook attributes here.
 
 e.g.
-#### postgresql::default
+#### milmsearch-postgresql::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,7 +27,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['postgresql']['bacon']</tt></td>
+    <td><tt>['milmsearch-postgresql']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -36,17 +36,17 @@ e.g.
 
 Usage
 -----
-#### postgresql::default
+#### milmsearch-postgresql::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `postgresql` in your node's `run_list`:
+Just include `milmsearch-postgresql` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[postgresql]"
+    "recipe[milmsearch-postgresql]"
   ]
 }
 ```
