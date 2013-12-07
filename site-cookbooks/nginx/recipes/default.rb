@@ -18,3 +18,16 @@ service "nginx" do
   action [ :enable, :start ]
 end
 
+template "/etc/nginx/conf.d/default.conf" do
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :reload, "service[nginx]"
+end
+
+template "/etc/nginx/conf.d/ssl.conf" do
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :reload, "service[nginx]"
+end

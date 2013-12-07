@@ -1,0 +1,14 @@
+#
+# The default server
+#
+server {
+    listen       80 default_server;
+    server_name  <%= node[:nginx][:server_name] %>;
+
+    location / {
+        proxy_pass   http://127.0.0.1:9000;
+    }
+
+}
+
+
