@@ -59,3 +59,5 @@ template "/usr/local/milmsearch/conf/application-production.conf" do
     :port     => es['port']
   )
 end
+
+include_recipe "milmsearch::iptables"
