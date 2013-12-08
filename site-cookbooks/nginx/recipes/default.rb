@@ -31,3 +31,14 @@ template "/etc/nginx/conf.d/ssl.conf" do
   mode 0644
   notifies :reload, "service[nginx]"
 end
+
+# install "htpasswd"
+package "httpd-tools" do
+  action :install
+end
+
+admin = Chef::EncryptedDataBagItem.load("basic_auth", "admin", "data_bag_key/secret_key")
+htpasswd "/etc/nginx/conf.d/.htpasswd" do
+  user "#{admin['user']}"
+  password "#{admin['password']}"
+end

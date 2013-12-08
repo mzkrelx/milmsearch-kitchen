@@ -5,10 +5,12 @@ server {
     listen       80 default_server;
     server_name  <%= node[:nginx][:server_name] %>;
 
+    location /admin {
+        rewrite ^/(.*)$ https://$host/$1;
+    }
+
     location / {
         proxy_pass   http://127.0.0.1:9000;
     }
 
 }
-
-
