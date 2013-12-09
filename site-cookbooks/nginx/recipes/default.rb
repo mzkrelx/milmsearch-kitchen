@@ -41,4 +41,5 @@ admin = Chef::EncryptedDataBagItem.load("basic_auth", "admin", "data_bag_key/sec
 htpasswd "/etc/nginx/conf.d/.htpasswd" do
   user "#{admin['user']}"
   password "#{admin['password']}"
+  notifies :reload, "service[nginx]"
 end
