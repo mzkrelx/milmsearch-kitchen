@@ -7,8 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Add deploy user
 u = data_bag_item('users', 'milmsearch')
+
+group u['group'] do
+  action :create
+end
+
+# Add deploy 
 user u['username'] do
   home  u['home']
   group u['group']
