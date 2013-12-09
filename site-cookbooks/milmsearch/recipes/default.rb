@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "milmsearch::postgresql"
 include_recipe "milmsearch::user"
 include_recipe "milmsearch::application_conf"
 include_recipe "milmsearch::application"

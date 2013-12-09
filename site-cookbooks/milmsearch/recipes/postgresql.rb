@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: milmsearch-postgresql
-# Recipe:: default
+# Cookbook Name:: milmsearch
+# Recipe:: postgresql
 #
 # Copyright 2013, YOUR_COMPANY_NAME
 #
