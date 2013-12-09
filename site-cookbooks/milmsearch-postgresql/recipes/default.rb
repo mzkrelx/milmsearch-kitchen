@@ -18,11 +18,12 @@ execute "create-user" do
 end
 
 execute "set-password" do
-  user "milmsearch"
-  command "psql -c \"alter role milmsearch with password '#{db['password']}'\""
+  user "postgres"
+  command "psql -c \"alter role #{db['user']} with password '#{db['password']}'\""
   not_if "psql -U postgres -c \"select * from pg_shadow where usename='#{db['user']}' and passwd is not null\" | grep -q #{db['user']}", :user => "postgres"
 end
 
+# Create the database of the name same as the db user name.
 execute "create-database" do
   user "postgres"
   command "createdb -O #{db['user']} #{db['user']}"
