@@ -25,6 +25,18 @@ template "/etc/nginx/conf.d/default.conf" do
   notifies :reload, "service[nginx]"
 end
 
+cookbook_file "/etc/nginx/server.crt" do
+  owner "root"
+  group "root"
+  mode 0600
+end
+
+cookbook_file "/etc/nginx/server.key" do
+  owner "root"
+  group "root"
+  mode 0600
+end
+
 template "/etc/nginx/conf.d/ssl.conf" do
   owner "root"
   group "root"
