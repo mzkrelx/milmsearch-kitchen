@@ -34,3 +34,8 @@ execute "expand" do
   cwd u['home']
   command "tar zxvf #{u['home']}/downloads/#{package_name}.tgz -C #{u['home']}; rm -rf target; mv #{package_name} target"
 end
+
+execute "restart" do
+  user "root"
+  command "supervisorctl restart milmsearch"
+end
