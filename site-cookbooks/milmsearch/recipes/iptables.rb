@@ -8,6 +8,7 @@
 #
 
 template "/etc/sysconfig/iptables" do
+  source "#{node['iptables']['templates']}"  
   owner "root"
   group "root"
   mode 0600

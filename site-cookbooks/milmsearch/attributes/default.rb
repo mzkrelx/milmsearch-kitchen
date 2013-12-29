@@ -14,3 +14,5 @@ default['postgresql']['pg_hba'] = [
 ]
 
 default['postgresql']['enable_pgdg_yum'] = true
+
+default['iptables']['templates'] = 'iptables.erb'
