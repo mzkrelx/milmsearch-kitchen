@@ -25,6 +25,12 @@ package "elasticsearch" do
   source "#{Chef::Config[:file_cache_path]}/#{repo_rpm_filename}"
 end
 
+# Set elasticsearch template file
+cookbook_file "#{Chef::Config[:file_cache_path]}/template_all.json" do
+  source "template_all.json"
+  mode 00644
+end
+
 service "elasticsearch" do
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
