@@ -42,3 +42,4 @@ template "/etc/elasticsearch/elasticsearch.yml" do
   notifies :reload, "service[elasticsearch]"
 end
 
+include_recipe "elasticsearch::head"
