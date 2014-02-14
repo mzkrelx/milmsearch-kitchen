@@ -10,6 +10,8 @@
 include_recipe "java"
 
 repo_rpm_filename = "elasticsearch-0.90.3.noarch.rpm"
+elasticsearch_dir = "/usr/share/elasticsearch"
+kuromoji_path = "elasticsearch/elasticsearch-analysis-kuromoji/1.5.0"
 
 # Download elasticsearch RPM as a local file
 remote_file "#{Chef::Config[:file_cache_path]}/#{repo_rpm_filename}" do
@@ -26,5 +28,17 @@ end
 service "elasticsearch" do
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
+end
+
+execute "install kuromoji" do
+  command "#{elasticsearch_dir}/bin/plugin -install #{kuromoji_path}"
+  creates "#{elasticsearch_dir}/plugins/analysis-kuromoji"
+end
+
+template "/etc/elasticsearch/elasticsearch.yml" do
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :reload, "service[elasticsearch]"
 end
 
