@@ -54,3 +54,8 @@ template "/etc/elasticsearch/elasticsearch.yml" do
   notifies :reload, "service[elasticsearch]"
 end
 
+# Set elasticsearch template
+execute "Set template" do
+  command "curl -XPUT http://localhost:9200/milmsearch/ -d \"\`cat /etc/elasticsearch/templates/template_all.json\`\""
+end
+
