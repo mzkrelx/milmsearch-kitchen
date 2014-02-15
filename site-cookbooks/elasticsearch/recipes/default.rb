@@ -25,9 +25,15 @@ package "elasticsearch" do
   source "#{Chef::Config[:file_cache_path]}/#{repo_rpm_filename}"
 end
 
+# Make elasticsearch templates directory
+directory '/etc/elasticsearch/templates' do owner 'root'
+  group 'root'
+  mode '0755 '
+action :create end
+
 # Set elasticsearch template file
-cookbook_file "#{Chef::Config[:file_cache_path]}/template_all.json" do
-  source "template_all.json"
+cookbook_file "/etc/elasticsearch/templates/template_all.json" do
+  source "templates/template_all.json"
   mode 00644
 end
 
