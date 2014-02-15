@@ -25,6 +25,19 @@ package "elasticsearch" do
   source "#{Chef::Config[:file_cache_path]}/#{repo_rpm_filename}"
 end
 
+# Make elasticsearch templates directory
+directory '/etc/elasticsearch/templates' do
+  owner 'root'
+  group 'root'
+  mode '0755 '
+action :create end
+
+# Set elasticsearch template file
+cookbook_file "/etc/elasticsearch/templates/template_all.json" do
+  source "templates/template_all.json"
+  mode 00644
+end
+
 service "elasticsearch" do
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
@@ -40,5 +53,10 @@ template "/etc/elasticsearch/elasticsearch.yml" do
   group "root"
   mode 0644
   notifies :reload, "service[elasticsearch]"
+end
+
+# Set elasticsearch template
+execute "set template" do
+  command "curl -XPUT http://localhost:9200/milmsearch/ -d \"\`cat /etc/elasticsearch/templates/template_all.json\`\""
 end
 
