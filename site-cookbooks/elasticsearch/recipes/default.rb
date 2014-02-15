@@ -26,7 +26,8 @@ package "elasticsearch" do
 end
 
 # Make elasticsearch templates directory
-directory '/etc/elasticsearch/templates' do owner 'root'
+directory '/etc/elasticsearch/templates' do
+  owner 'root'
   group 'root'
   mode '0755 '
 action :create end
@@ -55,7 +56,7 @@ template "/etc/elasticsearch/elasticsearch.yml" do
 end
 
 # Set elasticsearch template
-execute "Set template" do
+execute "set template" do
   command "curl -XPUT http://localhost:9200/milmsearch/ -d \"\`cat /etc/elasticsearch/templates/template_all.json\`\""
 end
 
