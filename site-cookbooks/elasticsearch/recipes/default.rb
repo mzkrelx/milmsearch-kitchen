@@ -60,3 +60,4 @@ execute "set template" do
   command "curl -XPUT http://localhost:9200/milmsearch/ -d \"\`cat /etc/elasticsearch/templates/template_all.json\`\""
 end
 
+include_recipe "elasticsearch::head"
