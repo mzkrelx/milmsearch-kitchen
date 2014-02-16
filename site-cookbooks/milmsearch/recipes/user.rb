@@ -40,29 +40,19 @@ file "#{u['home']}/.ssh/authorized_keys" do
   content u['key']
 end  
 
-# # no sudo password for user
-# lines = { 
-#   /#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/ =>
-#   "#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl",
-#   /\%#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/ => 
-#   "\%#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl"}
+# no sudo password for user
+lines = { 
+  /#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/ =>
+  "#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl",
+  /\%#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/ => 
+  "\%#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl"}
 
 ruby_block "edit resolv.conf" do
   block do
-    file = Chef::Util::FileEdit.new("/etc/sudoers")
-    file.insert_line_if_no_match(
-      /#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/,
-      "#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl")
-    file.write_file
-  end
-end
-
-ruby_block "edit resolv.conf" do
-  block do
-    file = Chef::Util::FileEdit.new("/etc/sudoers")
-    file.insert_line_if_no_match(
-      /\%#{u['username']} ALL=\(ALL\) NOPASSWD: \/usr\/bin\/supervisorctl/,
-      "\%#{u['username']} ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl")
-    file.write_file
+    lines.each { |reg, line|
+      file = Chef::Util::FileEdit.new("/etc/sudoers")
+      file.insert_line_if_no_match(/#{reg}/, line)
+      file.write_file
+    }
   end
 end
