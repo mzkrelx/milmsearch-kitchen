@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "sudo"
+
 u = data_bag_item('users', 'milmsearch')
 
 group u['group'] do
@@ -39,3 +41,10 @@ file "#{u['home']}/.ssh/authorized_keys" do
   action :create
   content u['key']
 end  
+
+sudo 'milmsearch' do
+  user  u['username']
+  runas 'ALL'
+  commands ['/usr/bin/supervisorctl']
+  nopasswd true
+end
