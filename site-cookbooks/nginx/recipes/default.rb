@@ -7,10 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "yum-epel::default"
-
 package "nginx" do
   action :install
+  not_if "rpm -q nginx"
 end
 
 service "nginx" do
@@ -25,17 +24,19 @@ template "/etc/nginx/conf.d/default.conf" do
   notifies :reload, "service[nginx]"
 end
 
-cookbook_file "/etc/nginx/server.crt" do
-  owner "root"
-  group "root"
-  mode 0600
-end
+# If you have crt file, please comment in.
+# cookbook_file "/etc/nginx/server.crt" do
+#   owner "root"
+#   group "root"
+#   mode 0600
+# end
 
-cookbook_file "/etc/nginx/server.key" do
-  owner "root"
-  group "root"
-  mode 0600
-end
+# If you have key file, please comment in.
+# cookbook_file "/etc/nginx/server.key" do
+#   owner "root"
+#   group "root"
+#   mode 0600
+# end
 
 template "/etc/nginx/conf.d/ssl.conf" do
   owner "root"
@@ -47,6 +48,7 @@ end
 # install "htpasswd"
 package "httpd-tools" do
   action :install
+  not_if "rpm -q httpd-tools"
 end
 
 admin = Chef::EncryptedDataBagItem.load("basic_auth", "admin", "data_bag_key/secret_key")
